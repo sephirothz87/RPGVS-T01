@@ -5,7 +5,7 @@
 // })
 
 // $.getJSON("js/cfg_hero.json?jsoncallback=?",function(data){
-    
+
 // $.getJSON("js/cfg_hero.json",function(data){
 //     console.log("aaa") 
 //     console.log(data)
@@ -22,14 +22,14 @@
 //     }
 // })
 
-hero_data = (id=0,name="Zhaoyun")=>{
-    return  {
-        id:id,
-        name:name
+hero_data = (id = 0, name = "Zhaoyun") => {
+    return {
+        id: id,
+        name: name
     }
 }
 
-Vue.component('hero',{
+Vue.component('hero', {
     // template:`
     //     <div>
     //         hahaha
@@ -42,12 +42,11 @@ Vue.component('hero',{
     //     </td>
     // `
 
-    template:`
+    template: `
         <td>
             {{name}}
         </td>
-    `
-    ,
+    `,
     // data: ()=>{return hero_data}
     // data: ()=>{return {
     //     id:0,
@@ -56,7 +55,7 @@ Vue.component('hero',{
 
     // data: hero_data
 
-    props:['name']
+    props: ['name']
 })
 
 
@@ -92,51 +91,59 @@ vue_battle = new Vue({
         // r_heros: [],
         // b_heros: []
 
-        teams:[],
+        teams: [],
         // heros:[]
     },
-    ready:function(){
+    ready: function() {
         this.init('js/cfg_hero.json')
     },
-    methods:{
+    methods: {
         // init:function(jsonPath){//标准的ES5写法
         // init:jsonPath=>{//箭头函数不生效，因为this继承的问题，此时this不再是view对象，而是window
-        init(jsonPath){//这种方法可以,在vue体系下这是最简单的写法
+        init(jsonPath) { //这种方法可以,在vue体系下这是最简单的写法
             console.log('init start')
-            // let self = this;
-            // self.$http.get(jsonPath).then(function(res){//标准写法
-            this.$http.get(jsonPath).then(res=>{//可以使用箭头函数
+                // let self = this;
+                // self.$http.get(jsonPath).then(function(res){//标准写法
+            this.$http.get(jsonPath).then(res => { //可以使用箭头函数
                 let data = res.data
                 console.log(res.data)
-                // MOCK
-                // 假设从上一个页面读取到的阵容信息是
+                    // MOCK
+                    // 假设从上一个页面读取到的阵容信息是
                 teams = [
-                    ['001','002','001'],['002','001','002']
+                    ['001', '002', '001'],
+                    ['002', '001', '002']
                 ]
 
                 battle = {
-                    teams:[]
+                    teams: []
                 }
 
-                for(team in teams){
+                for (team in teams) {
                     console.log(teams[team])
                     battle.teams.push({
-                        name:'team_'+team,
-                        heros:[]
+                        name: 'team_' + team,
+                        heros: []
                     })
 
-                    for(hero in teams[team]){
+                    for (hero in teams[team]) {
                         console.log(teams[team][hero])
                         console.log(data[teams[team][hero]])
 
-                        let new_hero = {
-                            id:data[teams[team][hero]]['id'],
-                            name:data[teams[team][hero]]['name'],
-                            hp:data[teams[team][hero]]['hp'],
-                            mp:data[teams[team][hero]]['mp']
-                        }
-
                         // new_hero = data[teams[team][hero]]
+
+                        // 直接定义新的对象
+                        // let new_hero = {
+                        //     id:data[teams[team][hero]]['id'],
+                        //     name:data[teams[team][hero]]['name'],
+                        //     hp:data[teams[team][hero]]['hp'],
+                        //     mp:data[teams[team][hero]]['mp']
+                        // }
+
+                        let hero_info = data[teams[team][hero]]
+
+                        let new_hero = new HeroBase(hero_info['id'], hero_info['hp'], hero_info['mp'], hero_info['name'])
+                        // let new_hero = new ZhaoYun(hero_info['id'], hero_info['hp'], hero_info['mp'], hero_info['name'])
+
                         console.log(new_hero)
                         console.log(battle.teams[team].heros)
                         battle.teams[team].heros.push(new_hero)
@@ -166,7 +173,7 @@ vue_battle.init('js/cfg_hero.json')
 //     vue_battle.teams = res.teams
 //     // vue_battle.heros = res.teams.heros
 
-    
+
 // }
 
 

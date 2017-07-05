@@ -1,10 +1,6 @@
+//用户管理英雄技能的基础JS类
+
 class HeroBase {
-	constructor(){
-        this.id = 0
-        this.hp = 100
-        this.mp = 100
-        this.name = 'Hero'
-    }
 	constructor(id,hp,mp,name){
         this.id = id
         this.hp = hp
