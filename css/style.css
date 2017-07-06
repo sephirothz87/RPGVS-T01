@@ -20,14 +20,18 @@ body .test-area{
 .div-battle table{
     width: 500px;
     height:30%;
-    margin:10px auto;
+    margin:50px auto;
     /*border: solid black;*/
 }
 
 .div-battle table td{
     /*border: solid black;*/
     width: 33%;
-    padding: 15px;
+    padding: 10px;
+}
+
+.div-battle table td.active{
+    border: solid red;
 }
 
 .div-battle #team_blue {
@@ -40,10 +44,6 @@ body .test-area{
     min-height: 100px;
     /*margin: 15px;*/
     border: solid black;
-}
-
-.div-battle .div-hero.active{
-    border: solid red;
 }
 
 footer div {

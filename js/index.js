@@ -39,12 +39,10 @@ vue_battle = new Vue({
                 teams = [
                     [
                         ['001', '002', '001'],
-                        [null, null, null],
                         [null, null, null]
                     ],
                     [
                         ['002', '001', '002'],
-                        [null, null, null],
                         [null, null, null]
                     ]
                 ]
