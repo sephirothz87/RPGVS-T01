@@ -25,12 +25,14 @@
         RPG VS
         <div class="div-battle" id="battle">
             <table v-for="team in battle.teams" :id="team.name">
-                <tr>
-                    <td v-for="hero in team.heros">
-                        <div class="div-hero" :class="{active:hero.isActive}">
+                <tr v-for="row in team.rows">
+                    <td v-for="hero in row">
+                        <div class="div-hero" v-if="hero!=null" :class="{active:hero.isActive}">
                             <p>{{hero.name}}</p>
                             <p>HP:  {{hero.hpNow}}/{{hero.hpMaxNow}}</p>
                             <p>MP:  {{hero.mpNow}}/{{hero.mpMaxNow}}</p>
+                        </div>
+                        <div class="div-hero" v-else>
                         </div>
                     </td>
                 </tr>
@@ -69,7 +71,7 @@
                 // console.log(zhaoyun_reduce)
 
 
-                attack(vue_battle.battle.teams[0].heros[1],vue_battle.battle.teams[1].heros[1],vue_battle.battle)
+                attack(vue_battle.battle.teams[0].rows[0][1],vue_battle.battle.teams[1].rows[0][1],vue_battle.battle)
             }
         }
     })

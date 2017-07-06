@@ -33,11 +33,20 @@ vue_battle = new Vue({
             this.$http.get(jsonPath).then(res => { //可以使用箭头函数
                 let data = res.data
                 console.log(res.data)
-                    // MOCK
-                    // 假设从上一个页面读取到的阵容信息是
+
+                // MOCK
+                // 假设从上一个页面读取到的阵容信息是
                 teams = [
-                    ['001', '002', '001'],
-                    ['002', '001', '002']
+                    [
+                        ['001', '002', '001'],
+                        [null, null, null],
+                        [null, null, null]
+                    ],
+                    [
+                        ['002', '001', '002'],
+                        [null, null, null],
+                        [null, null, null]
+                    ]
                 ]
 
                 battle = {
@@ -45,26 +54,41 @@ vue_battle = new Vue({
                 }
 
                 for (team in teams) {
-                    console.log(teams[team])
+                    // console.log(teams[team])
                     battle.teams.push({
                         name: 'team_' + team,
-                        heros: []
+                        rows: []
                     })
 
-                    for (hero in teams[team]) {
-                        let hero_info = data[teams[team][hero]]
+                    for(row in teams[team]){
+                        // battle.teams[team].push()
+                        row_item = []
 
-                        // let new_hero = new HeroBase(hero_info['id'], hero_info['name'], hero_info['hp'], hero_info['mp'])
+
+                        for (hero in teams[team][row]) {
+                            let hero_info = data[teams[team][row][hero]]
+                            let new_hero = null
+
+                            if(hero_info!=null){
+                                new_hero = initHero(hero_info['id'], hero_info['name'], hero_info['hp'], hero_info['mp'], hero_info['attackP'], hero_info['attackM'], hero_info['defendP'], hero_info['defendM'])
+                            }
+
+                            // let new_hero = new HeroBase(hero_info['id'], hero_info['name'], hero_info['hp'], hero_info['mp'])
 
 
-                        let new_hero = initHero(hero_info['id'], hero_info['name'], hero_info['hp'], hero_info['mp'], hero_info['attackP'], hero_info['attackM'], hero_info['defendP'], hero_info['defendM'])
 
-                        battle.teams[team].heros.push(new_hero)
+                            row_item.push(new_hero)
+                        }
+
+                        battle.teams[team].rows.push(row_item)
                     }
+
+
+
                 }
 
                 //MOCK
-                battle.teams[0].heros[1].isActive = true
+                battle.teams[0].rows[0][1].isActive = true
 
 
                 // this.teams = battle.teams
