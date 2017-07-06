@@ -12,110 +12,33 @@
     <script src="./common/js/vue.js"></script>
     <script src="./common/js/vue-resource.min.js"></script>
     <script src="./common/js/common.js"></script>
+    <script src="./js/game-util.js"></script>
+    <script src="./js/game-main.js"></script>
     <script src="./js/m-server.js"></script>
     <script src="./js/heros.js"></script>
-    <script type="text/javascript">
-    </script>
+    <script src="./js/heros-init.js"></script>
 </head>
 
 <body>
     <hedder></hedder>
     <div class="main">
-        <!-- {{title}} -->
         RPG VS
-        <!-- <div class="div-battle">
-            <table id="table_red">
-                <tr>
-                    <td id="td_r_1">
-                    </td>
-                    <td id="td_r_2">
-                    </td>
-                    <td id="td_r_2">
-                    </td>
-                </tr>
-            </table>
-            <table id="table_blue">
-                <tr>
-                    <td id="td_b_1">
-                    </td>
-                    <td id="td_b_2">
-                    </td>
-                    <td id="td_b_3">
-                    </td>
-                </tr>
-            </table>
-        </div> -->
-        <!-- <div class="div-battle" id="battle">
-            <table id="table_red">
-                <tr>
-                    <td v-for="r_hero in r_heros">
-                        {{ r_hero.name }}
-                    </td>
-                </tr>
-            </table>
-            <table id="table_blue">
-                <tr>
-                    <td v-for="b_hero in b_heros">
-                        {{ b_hero.name }}
-                    </td>
-                </tr>
-            </table>
-        </div> -->
-        
         <div class="div-battle" id="battle">
-            <!-- <table id="table_red">
-                <tr>
-                    <td><hero></hero></td>
-                    <td><hero></hero></td>
-                    <td><hero></hero></td>
-                </tr>
-            </table>
-            <table id="table_blue">
-                <tr>
-                    <td><hero></hero></td>
-                    <td><hero></hero></td>
-                    <td><hero></hero></td>
-                </tr>
-            </table> -->
-
-            <!-- <table id="table_red">
-                <tr>
-                    <td is="hero" name="ZZZZ"></td>
-                    <td is="hero"></td>
-                    <td is="hero"></td>
-                </tr>
-            </table>
-            <table id="table_blue">
-                <tr>
-                    <td is="hero"></td>
-                    <td is="hero"></td>
-                    <td is="hero"></td>
-                </tr>
-            </table> -->
-
-            <!-- <table id="table_red">
-                <tr>
-                    <td is="hero" v-for="r_hero in r_heros">{{r_hero.name}}</td>
-                </tr>
-            </table>
-            <table id="table_blue">
-                <tr>
-                    <td is="hero" v-for="b_hero in b_heros">{{b_hero.name}}</td>
-                </tr>
-            </table> -->
-
-            <table v-for="team in teams" :id="team.name">
+            <table v-for="team in battle.teams" :id="team.name">
                 <tr>
                     <td v-for="hero in team.heros">
                         <div class="div-hero" :class="{active:hero.isActive}">
                             <p>{{hero.name}}</p>
-                            <p>{{hero.hp}}</p>
-                            <p>{{hero.mp}}</p>
+                            <p>HP:  {{hero.hpNow}}/{{hero.hpMaxNow}}</p>
+                            <p>MP:  {{hero.mpNow}}/{{hero.mpMaxNow}}</p>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
+    </div>
+    <div id="test" class="test-area">
+        <button v-on:click='button1()'>{{button1_txt}}</button>
     </div>
     <footer class="bs-docs-footer">
         <div>@Zhong Zhicong</div>
@@ -124,3 +47,30 @@
 
 </html>
 <script src="./js/index.js"></script>
+<script type="text/javascript">
+    var test = new Vue({
+        el: '#test',
+        data: {
+            button1_txt: '攻击模拟'
+        },
+        methods:{
+            button1(){
+                // console.log('attack start')
+
+                //MOCK 免伤值获取
+                // lvbu_reduce = vue_battle.battle.teams[0].heros[1].getReduceAllNow()
+                // zhaoyun_reduce = vue_battle.battle.teams[1].heros[1].getReduceAllNow()
+
+                // console.log(lvbu_reduce)
+                // console.log(zhaoyun_reduce)
+
+                // vue_battle.battle.teams[1].heros[1].hpNow = 2000
+                // zhaoyun_reduce = vue_battle.battle.teams[1].heros[1].getReduceAllNow()
+                // console.log(zhaoyun_reduce)
+
+
+                attack(vue_battle.battle.teams[0].heros[1],vue_battle.battle.teams[1].heros[1],vue_battle.battle)
+            }
+        }
+    })
+</script>

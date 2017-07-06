@@ -5,6 +5,11 @@ body .main{
     box-sizing: border-box;
 }
 
+body .test-area{
+    position: absolute;
+    bottom: 100px;
+}
+
 .div-battle{
     width: 80%;
     height:80%;

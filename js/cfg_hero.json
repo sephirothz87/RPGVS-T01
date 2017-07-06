@@ -3,18 +3,30 @@
 		"id":1,
 		"name":"Hero",
 		"hp":10000,
-		"mp":1000
+		"mp":1000,
+		"attackP":1000,
+		"attackM":1000,
+		"defendP":1000,
+		"defendM":1000
 	},
 	"001":{
 		"id":1,
 		"name":"ZhaoYun",
-		"hp":10000,
-		"mp":1000
+		"hp":6732,
+		"mp":1760,
+		"attackP":380,
+		"attackM":0,
+		"defendP":394,
+		"defendM":169
 	},
 	"002":{
 		"id":2,
 		"name":"LvBu",
-		"hp":15000,
-		"mp":100
+		"hp":7344,
+		"mp":0,
+		"attackP":343,
+		"attackM":0,
+		"defendP":390,
+		"defendM":169
 	}
 }
