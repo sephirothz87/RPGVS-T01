@@ -5,93 +5,130 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="./common/css/cmn_style.css">
-    <link rel="stylesheet" href="./common/css/style.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./common/js/vue.js"></script>
-</head>
-
-<body>
-    <div id="app">
-        <p>{{ message }}</p>
-
-<!--         <div id="vSpeed" v-for='speed in speeds'>
-            <input type='text' v-model='speed'/>
-            <p>{{ speed }}</p>
-        </div> -->
-
-
-        <input type='text' v-model='speeds[0]'/>
-        <p>{{ speeds[0] }}</p>
-        <input type='text' v-model='speeds[1]'/>
-        <p>{{ speeds[1] }}</p>
-        <input type='text' v-model='speeds[2]'/>
-        <p>{{ speeds[2] }}</p>
-        <input type='text' v-model='speeds[3]'/>
-        <p>{{ speeds[3] }}</p>
-        <input type='text' v-model='speeds[4]'/>
-        <p>{{ speeds[4] }}</p>
-
-
-        <button v-on:click='button1()'>{{ message }}</button>
-        <br>
-        <button v-on:click='button2()'>{{ message }}</button>
-    </div>
-
-    <!-- <button id="vButton3" v-on:click='button3()'>3</button> -->
-</body>
 
     <script type="text/javascript">
 
-    // speeds = [100,300,500]
+function timeout(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms, 'done');
+  });
+}
+
+timeout(100).then((value) => {
+  console.log(value);
+});
 
 
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue.js!',
-            speeds : ['100','300','500','700','900']
-            // speeds : [100,300,500,700,900]
-            // speeds : []
-        },
-        methods:{
-            button1:()=>{console.log(app.speeds)},
-            button2:()=>{
-                            console.log('abcd')
-                            app.message = 'abc'
-                        }
-        }
 
-    })
 
-    // app.speeds =  [100,300,500]
+// for (var i = 0; i < 5; i++) {
+//   setTimeout((function(i) {
+//     console.log(i);
+//   })(i), i * 1000);
+// }
 
-    // app.speeds =  [200,400,600]
 
-    // var vButton3 = new Vue({
-    //     el: '#vButton3',
-    //     methods:{
-    //         button3:()=>{
-    //                         console.log(app.speeds)
-    //                         app.message = 'abc'
-    //                     }
-    //     }
+// for (var i = 0; i < 5; i++) {
+//   setTimeout(function() {
+//     console.log(i);
+//   }, 1000 * i);
+// }
 
-    // })
-   
 
-    // new Vue({
-    //     el: '#vSpeed',
-    //     data: {
-    //         speeds: speeds
-    //     }
-    // })
-    // console.log(123);
 
-    // button1  = ()=>{
-    //     console.log(456)
-    //     console.log(speeds);
-    // }
+        //     for (var i = 0; i < 5; i++) {
+        //   console.log(i);
+        // }
+
+
+
+
+        // console.log(123)
+        // const obj={a:1,b:2,c:3};
+        // function foo(o,arr){
+        //     var obj={};
+        //     arr.map((i)=>obj[i]=o[i]);
+        //     return obj;
+        // }
+
+        // console.log(foo(obj,["a","c"]));
     </script>
+    <style type="text/css">
+         #zero{
+                        width:200px;
+                        height: 200px;
+                        margin: 100px 500px;
+                        background: black;
+            
+                        z-index: 0;
+                    }
+                    #one{
+                        width: 100px;
+                        height: 100px;
+                        position: relative;
+                        top: 50px;
+                        left:20px;
+                        background: red;
+                        z-index: 1;
+                    }
+                    #two{
+                        width: 100px;
+                        height: 100px;
+                        position: absolute;
+                        top: 190px;
+                        
+                        background: yellow;
+                        z-index: 2;
+                    }
+                    #tree{
+                        width: 100px;
+                        height: 100px;
+                        position: fixed;
+                        top: 250px;
+                        left: 600px;
+                        background: deepskyblue;
+                        z-index: 3;
+                    }
+
+                    #first{
+                
+                width: 200px;
+                height: 200px;
+                background: black;
+                margin-top: 100px;
+                z-index: 1;
+            }
+            #second{
+                margin-top: 10px;
+                margin-left:10px;
+                width: 150px;
+                height: 150px;
+                background: yellow;
+                z-index:2;
+            }
+            #thrid{
+                width: 100px;
+                height: 100px;
+                position:relative;
+                background: red;
+                top: 30px;
+                left: 30px;
+                z-index: 1;
+            }
+    </style>
+</head>
+
+<body>
+<div id="zero">
+            <div id="one">one</div>
+            <div id="two">two</div>
+            <div id="tree">tree</div>
+</div>
+<div id="first">
+            <div id="second">
+                <div id="thrid"></div>
+            </div>
+        </div>
+</body>
 
 </html>
